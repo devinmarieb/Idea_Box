@@ -1,21 +1,45 @@
 var title = $('.title-field');
 var body = $('.body-field');
+var ideaArray = [];
 
-$('.save-button').on('click', function () {
+$('.save-button').on('click', function() {
   var titleInput = title.val();
   var bodyInput = body.val();
-  createIdea(titleInput, bodyInput);
-})
+  var ideabox = new CreateIdea(titleInput, bodyInput);
+  ideabox.displayIdea();
+});
 
-function createIdea(titleInput, bodyInput) {
-  var idea = $('.idea-list').prepend(
-    `<li class="new-idea">
-    <h2 class="title-input">${titleInput}</h2>
-    <p class="body-input">${bodyInput}</p>
-    <button class="delete" type="button" name="delete" img src="images/delete.svg"></button>
-    <button class="up-vote" type="button" name="up-vote" img src="images/upvote.svg"></button>
-    <button class="down-vote" type="button" name="down-vote" img src="images/downvote.svg"></button>
-    <p class="rating">quality: <span class="user-quality">swill</span></p>
-    </li>`
-  );
+function CreateIdea(title, body, id, quality) {
+  this.title = title;
+  this.body = body;
+  this.quality = "swill";
+  this.id = Date.now();
 }
+
+CreateIdea.prototype.displayIdea = function () {
+  $('.idea-list').prepend(
+   `<li class="new-idea">
+   <h2 class="title-input">${this.title}</h2>
+   <p class="body-input">${this.body}</p>
+   <p class="rating">quality: <span class="user-quality">swill</span></p>
+   <button class="delete" type="button" name="delete" img src="images/delete.svg"></button>
+   <button class="up-vote" type="button" name="up-vote" img src="images/upvote.svg"></button>
+   <button class="down-vote" type="button" name="down-vote" img src="images/downvote.svg"></button>
+   </li>`
+ );
+}
+
+
+//
+// function createIdea(titleInput, bodyInput) {
+//   var idea = $('.idea-list').prepend(
+//     `<li class="new-idea">
+//     <h2 class="title-input">${titleInput}</h2>
+//       <p class="body-input">${bodyInput}</p>
+//     <button class="delete" type="button" name="delete" img src="images/delete.svg"></button>
+//     <button class="up-vote" type="button" name="up-vote" img src="images/upvote.svg"></button>
+//     <button class="down-vote" type="button" name="down-vote" img src="images/downvote.svg"></button>
+//     <p class="rating">quality: <span class="user-quality">swill</span></p>
+//     </li>`
+//   );
+// }
