@@ -7,6 +7,8 @@ $('.save-button').on('click', function() {
   var bodyInput = body.val();
   var ideabox = new CreateIdea(titleInput, bodyInput);
   ideabox.displayIdea();
+  saveToStorage(ideabox);
+  // ideaArray.push(ideabox);
 });
 
 function CreateIdea(title, body, id, quality) {
@@ -27,4 +29,9 @@ CreateIdea.prototype.displayIdea = function () {
    <button class="down-vote" type="button" name="down-vote" img src="images/downvote.svg"></button>
    </li>`
  );
+}
+
+function saveToStorage(ideabox) {
+  ideaArray.push(ideabox);
+  localStorage.setItem("stuff", JSON.stringify(ideaArray));
 }
