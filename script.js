@@ -1,6 +1,6 @@
 var title = $('.title-field');
 var body = $('.body-field');
-var ideaArray = JSON.parse(localStorage.getItem('ideabox')) || [];
+var ideaArray = JSON.parse(localStorage.getItem('newUserIdea')) || [];
 
 $('document').ready(function(){
   getStorage();
@@ -27,11 +27,11 @@ function displayIdea(titleInput, bodyInput, id, quality){
 }
 
 function saveToStorage() {
-  localStorage.setItem('ideabox', JSON.stringify(ideaArray));
+  localStorage.setItem('newUserIdea', JSON.stringify(ideaArray));
 }
 
 function getStorage(){
-  var storedIdeas = JSON.parse(localStorage.getItem('ideabox'));
+  var storedIdeas = JSON.parse(localStorage.getItem('newUserIdea'));
   if (storedIdeas){
     for (i = 0; i < storedIdeas.length; i++){
       var idea = storedIdeas[i];
@@ -39,16 +39,6 @@ function getStorage(){
     }
   }
 }
-
-$('ul').on('click', '.delete', function(){
-  this.closest('li').remove();
-  // var item = function() {
-  //   ideaArray.findIndex(this.li)
-  // };
-  // console.log(item);
-  localStorage.getItem('ideabox');
-  localStorage.removeItem('ideabox');
-})
 
 function clearInputFields(){
   var titleInput = title.val('');
@@ -58,14 +48,31 @@ function clearInputFields(){
 $('.save-button').on('click', function() {
   var titleInput = title.val();
   var bodyInput = body.val();
-  var ideabox = new CreateIdea(titleInput, bodyInput);
-  var id = ideabox.id;
-  var quality = ideabox.quality;
+  var newUserIdea = new CreateIdea(titleInput, bodyInput);
+  var id = newUserIdea.id;
+  var quality = newUserIdea.quality;
   displayIdea(titleInput, bodyInput, id, quality);
-  ideaArray.push(ideabox);
-  saveToStorage(ideabox);
+  ideaArray.push(newUserIdea);
+  saveToStorage(newUserIdea);
   clearInputFields();
 });
 
+//delete button
+$('ul').on('click', '.delete', function(){
+  this.closest('li').remove();
+  // var item = function() {
+  //   ideaArray.findIndex(this.li)
+  // };
+  // console.log(item);
+  // localStorage.getItem('newUserIdea');
+  // localStorage.removeItem('newUserIdea');
+})
+
+//upvote button
+$('ul').on('click', '.up-vote', function() {
+  this.closest('li').
+})
+
+//downvote button
 
 //last index of for search
