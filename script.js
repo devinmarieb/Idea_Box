@@ -1,6 +1,6 @@
 var title = $('.title-field');
 var body = $('.body-field');
-var ideaArray = [];
+var ideaArray = JSON.parse(localStorage.getItem('ideabox')) || [];
 
 $('.save-button').on('click', function() {
   var titleInput = title.val();
@@ -8,19 +8,18 @@ $('.save-button').on('click', function() {
   var ideabox = new CreateIdea(titleInput, bodyInput);
   ideabox.displayIdea();
   saveToStorage(ideabox);
-  // ideaArray.push(ideabox);
 });
 
 function CreateIdea(title, body, id, quality) {
   this.title = title;
   this.body = body;
-  this.quality = "swill";
   this.id = Date.now();
+  this.quality = "swill";
 }
 
 CreateIdea.prototype.displayIdea = function () {
   $('.idea-list').prepend(
-   `<li ${Date.now()} class="new-idea">
+   `<li ${this.id} class="new-idea">
    <h2 class="title-input">${this.title}</h2>
    <p class="body-input">${this.body}</p>
    <p class="rating">quality: <span class="user-quality">swill</span></p>
@@ -33,5 +32,5 @@ CreateIdea.prototype.displayIdea = function () {
 
 function saveToStorage(ideabox) {
   ideaArray.push(ideabox);
-  localStorage.setItem("stuff", JSON.stringify(ideaArray));
+  localStorage.setItem('ideabox', JSON.stringify(ideaArray));
 }
