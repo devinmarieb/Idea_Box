@@ -2,6 +2,10 @@ var title = $('.title-field');
 var body = $('.body-field');
 var ideaArray = JSON.parse(localStorage.getItem('ideabox')) || [];
 
+// $('document').ready(function(){
+//   populateDomFromLocalStorage();
+// });
+
 $('.save-button').on('click', function() {
   var titleInput = title.val();
   var bodyInput = body.val();
@@ -10,6 +14,12 @@ $('.save-button').on('click', function() {
   saveToStorage(ideabox);
 });
 
+$('ul').on('click', '.delete', function(){
+  debugger;
+  deleteIdea();
+  saveToStorage();
+})
+
 function CreateIdea(title, body, id, quality) {
   this.title = title;
   this.body = body;
@@ -17,7 +27,7 @@ function CreateIdea(title, body, id, quality) {
   this.quality = "swill";
 }
 
-CreateIdea.prototype.displayIdea = function () {
+CreateIdea.prototype.displayIdea = function() {
   $('.idea-list').prepend(
    `<li ${this.id} class="new-idea">
    <h2 class="title-input">${this.title}</h2>
@@ -34,3 +44,17 @@ function saveToStorage(ideabox) {
   ideaArray.push(ideabox);
   localStorage.setItem('ideabox', JSON.stringify(ideaArray));
 }
+
+// function populateDomFromLocalStorage () {
+//   var storedIdeas = ideaArray;
+//   if (ideaArray.length !== 0) {
+//     $('.idea-list').prepend(ideaArray).value;
+//     console.log('hello')
+//   }
+// }
+
+$('ul').on('click', '.delete', function () {
+  ideaBox = removeIdea(this.closest('li').id);
+  this.closest('li').remove();
+  saveToStorage();
+});
