@@ -31,16 +31,20 @@ function saveToStorage() {
 }
 
 function getStorage(){
-  debugger
   var storedIdeas = JSON.parse(localStorage.getItem('ideabox'));
   if (storedIdeas){
     for (i = 0; i < storedIdeas.length; i++){
       var idea = storedIdeas[i];
-      for
-      // ideaArray.push(new CreateIdea(idea.title, idea.body, idea.id, idea.quality));
+      displayIdea(idea.title, idea.body, idea.id, idea.quality);
     }
   }
 }
+
+// $('ul').on('click', '.delete', function(){
+//   console.log('hi')
+//   this.closest('li').remove();
+//   saveToStorage();
+// })
 
 function clearInputFields(){
   var titleInput = title.val('');
@@ -58,3 +62,6 @@ $('.save-button').on('click', function() {
   saveToStorage(ideabox);
   clearInputFields();
 });
+
+
+//last index of for search
