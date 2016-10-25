@@ -40,11 +40,15 @@ function getStorage(){
   }
 }
 
-// $('ul').on('click', '.delete', function(){
-//   console.log('hi')
-//   this.closest('li').remove();
-//   saveToStorage();
-// })
+$('ul').on('click', '.delete', function(){
+  this.closest('li').remove();
+  // var item = function() {
+  //   ideaArray.findIndex(this.li)
+  // };
+  // console.log(item);
+  localStorage.getItem('ideabox');
+  localStorage.removeItem('ideabox');
+})
 
 function clearInputFields(){
   var titleInput = title.val('');
