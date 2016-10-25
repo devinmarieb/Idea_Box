@@ -1,24 +1,25 @@
 var title = $('.title-field');
 var body = $('.body-field');
 var ideaArray = JSON.parse(localStorage.getItem('ideabox')) || [];
+var ideabox = new CreateIdea
 
-$('document').ready(function(){
-  getStorage();
-});
+// $('document').ready(function(){
+//   getStorage(ideabox);
+// });
 
 function CreateIdea(title, body, id, quality) {
   this.title = title;
   this.body = body;
-  this.id = Date.now();
-  this.quality = "swill";
+  this.id = id || Date.now();
+  this.quality = quality || "swill";
 }
 
-CreateIdea.prototype.displayIdea = function() {
+function displayIdea(titleInput, bodyInput, id, quality){
   $('.idea-list').prepend(
-   `<li ${this.id} class="new-idea">
-   <h2 class="title-input">${this.title}</h2>
+   `<li id=${id} class="new-idea">
+   <h2 class="title-input">${titleInput}</h2>
    <button class="delete" type="button" name="delete" img src="images/delete.svg"></button>
-   <p class="body-input">${this.body}</p>
+   <p class="body-input">${bodyInput}</p>
    <p class="rating">quality: <span class="user-quality">swill</span></p>
    <button class="up-vote" type="button" name="up-vote" img src="images/upvote.svg"></button>
    <button class="down-vote" type="button" name="down-vote" img src="images/downvote.svg"></button>
@@ -34,16 +35,19 @@ $('.save-button').on('click', function() {
   var titleInput = title.val();
   var bodyInput = body.val();
   var ideabox = new CreateIdea(titleInput, bodyInput);
-  ideabox.displayIdea();
+  var id = ideabox.id;
+  var quality = ideabox.quality;
+  displayIdea(titleInput, bodyInput, id, quality);
   ideaArray.push(ideabox);
   saveToStorage(ideabox);
 });
 
 function getStorage() {
   debugger
+  var ideabox = JSON.parse(localStorage.getItem('ideabox'))
   if (ideaArray.length !== 0) {
-    ideaArray.forEach(function(){
-      CreateIdea.prototype.displayIdea(this.title, this.body, this.id, this.quality);
+    ideabox.forEach(function(){
+    displayIdea();
     })
   }
 }
