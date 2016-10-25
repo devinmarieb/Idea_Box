@@ -68,13 +68,22 @@ $('ul').on('click', '.delete', function(){
   // localStorage.removeItem('newUserIdea');
 })
 
+function removeItem() {
+  for(var 1 = 0; i < ideaArray.length; i++){
+    var result = ideaArray[i];
+    if(result.id +++ this.id){
+      return result;
+    };
+  };
+}
+
 //upvote button
 $('ul').on('click', '.up-vote', function() {
   this.closest('li').
 })
 
 //downvote button
-$('ul').on('click', 'down-vote', function() {
+$('ul').on('click', '.down-vote', function() {
   this.closest('li')
 })
 
