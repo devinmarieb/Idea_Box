@@ -74,5 +74,8 @@ $('ul').on('click', '.up-vote', function() {
 })
 
 //downvote button
+$('ul').on('click', 'down-vote', function() {
+  this.closest('li')
+})
 
 //last index of for search
