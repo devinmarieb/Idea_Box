@@ -1,6 +1,6 @@
 var title = $('.title-field');
 var body = $('.body-field');
-var ideaArray = JSON.parse(localStorage.getItem('newUserIdea')) || [];
+var ideaArray = JSON.parse(localStorage.getItem('allIdeas')) || [];
 
 $('document').ready(function(){
   getStorage();
@@ -27,11 +27,11 @@ function displayIdea(titleInput, bodyInput, id, quality){
 }
 
 function saveToStorage() {
-  localStorage.setItem('newUserIdea', JSON.stringify(ideaArray));
+  localStorage.setItem('allIdeas', JSON.stringify(ideaArray));
 }
 
 function getStorage(){
-  var storedIdeas = JSON.parse(localStorage.getItem('newUserIdea'));
+  var storedIdeas = JSON.parse(localStorage.getItem('allIdeas'));
   if (storedIdeas){
     for (i = 0; i < storedIdeas.length; i++){
       var idea = storedIdeas[i];
@@ -48,43 +48,44 @@ function clearInputFields(){
 $('.save-button').on('click', function() {
   var titleInput = title.val();
   var bodyInput = body.val();
-  var newUserIdea = new CreateIdea(titleInput, bodyInput);
-  var id = newUserIdea.id;
-  var quality = newUserIdea.quality;
+  var allIdeas = new CreateIdea(titleInput, bodyInput);
+  var id = allIdeas.id;
+  var quality = allIdeas.quality;
   displayIdea(titleInput, bodyInput, id, quality);
-  ideaArray.push(newUserIdea);
-  saveToStorage(newUserIdea);
+  ideaArray.push(allIdeas);
+  saveToStorage(allIdeas);
   clearInputFields();
 });
 
 //delete button
 $('ul').on('click', '.delete', function(){
   this.closest('li').remove();
+  var id = this.id
+  localStorage.getItem('allIdeas', this.id);
+  localStorage.removeItem('allIdeas', id);
   // var item = function() {
   //   ideaArray.findIndex(this.li)
   // };
   // console.log(item);
-  // localStorage.getItem('newUserIdea');
-  // localStorage.removeItem('newUserIdea');
 })
 
 function removeItem() {
-  for(var 1 = 0; i < ideaArray.length; i++){
+  for(var i = 0; i < ideaArray.length; i++){
     var result = ideaArray[i];
-    if(result.id +++ this.id){
+    if(result.id === this.id){
       return result;
     };
   };
 }
 
 //upvote button
-$('ul').on('click', '.up-vote', function() {
-  this.closest('li').
-})
+// $('ul').on('click', '.up-vote', function() {
+//   this.closest('li').
+// })
 
 //downvote button
-$('ul').on('click', '.down-vote', function() {
-  this.closest('li')
-})
+// $('ul').on('click', '.down-vote', function() {
+//   this.closest('li')
+// })
 
 //last index of for search
