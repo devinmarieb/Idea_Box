@@ -1,10 +1,39 @@
 var title = $('.title-field');
 var body = $('.body-field');
-var ideaArray = JSON.parse(localStorage.getItem('ideabox')) || [];
+var ideaArray = JSON.parse(localStorage.getItem('newUserIdea')) || [];
 
 $('document').ready(function(){
   getStorage();
 });
+
+$('.save-button').on('click', function() {
+  var titleInput = title.val();
+  var bodyInput = body.val();
+  var newUserIdea = new CreateIdea(titleInput, bodyInput);
+  var id = newUserIdea.id;
+  var quality = newUserIdea.quality;
+  displayIdea(titleInput, bodyInput, id, quality);
+  ideaArray.push(newUserIdea);
+  saveToStorage(newUserIdea);
+  clearInputFields();
+});
+
+$('ul').on('click', '.delete', function(){
+  var id = this.closest('li').id
+  removeIdea(id);
+  $(this).closest('li').remove();
+})
+
+function removeIdea(id){
+  var index;
+  for(var i = 0; i < ideaArray.length; i ++){
+    if(ideaArray[i].id === parseInt(id)){
+      index = i;
+    }
+  }
+  ideaArray.splice(index, 1);
+  saveToStorage();
+}
 
 function CreateIdea(title, body, id, quality) {
   this.title = title;
@@ -27,11 +56,11 @@ function displayIdea(titleInput, bodyInput, id, quality){
 }
 
 function saveToStorage() {
-  localStorage.setItem('ideabox', JSON.stringify(ideaArray));
+  localStorage.setItem('newUserIdea', JSON.stringify(ideaArray));
 }
 
 function getStorage(){
-  var storedIdeas = JSON.parse(localStorage.getItem('ideabox'));
+  var storedIdeas = JSON.parse(localStorage.getItem('newUserIdea'));
   if (storedIdeas){
     for (i = 0; i < storedIdeas.length; i++){
       var idea = storedIdeas[i];
@@ -40,28 +69,9 @@ function getStorage(){
   }
 }
 
-// $('ul').on('click', '.delete', function(){
-//   console.log('hi')
-//   this.closest('li').remove();
-//   saveToStorage();
-// })
-
 function clearInputFields(){
   var titleInput = title.val('');
   var bodyInput = body.val('');
 }
 
-$('.save-button').on('click', function() {
-  var titleInput = title.val();
-  var bodyInput = body.val();
-  var ideabox = new CreateIdea(titleInput, bodyInput);
-  var id = ideabox.id;
-  var quality = ideabox.quality;
-  displayIdea(titleInput, bodyInput, id, quality);
-  ideaArray.push(ideabox);
-  saveToStorage(ideabox);
-  clearInputFields();
-});
-
-
-//last index of for search
+//lastIndexOf for search - jQuery//
