@@ -26,19 +26,20 @@ function displayIdea(titleInput, bodyInput, id, quality){
  );
 }
 
+function saveToStorage() {
+  localStorage.setItem('ideabox', JSON.stringify(ideaArray));
+}
+
 function getStorage(){
   debugger
   var storedIdeas = JSON.parse(localStorage.getItem('ideabox'));
   if (storedIdeas){
     for (i = 0; i < storedIdeas.length; i++){
-    var idea = storedIdeas[i];
-    this.ideaArray.push(new CreateIdea(idea.title, idea.body, idea.id, idea.quality));
+      var idea = storedIdeas[i];
+      for
+      // ideaArray.push(new CreateIdea(idea.title, idea.body, idea.id, idea.quality));
     }
   }
-}
-
-function saveToStorage() {
-  localStorage.setItem('ideabox', JSON.stringify(ideaArray));
 }
 
 function clearInputFields(){
