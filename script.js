@@ -1,11 +1,10 @@
 var title = $('.title-field');
 var body = $('.body-field');
 var ideaArray = JSON.parse(localStorage.getItem('ideabox')) || [];
-var ideabox = new CreateIdea
 
-// $('document').ready(function(){
-//   getStorage(ideabox);
-// });
+$('document').ready(function(){
+  getStorage();
+});
 
 function CreateIdea(title, body, id, quality) {
   this.title = title;
@@ -31,6 +30,23 @@ function saveToStorage() {
   localStorage.setItem('ideabox', JSON.stringify(ideaArray));
 }
 
+function getStorage(){
+  debugger
+  var storedIdeas = JSON.parse(localStorage.getItem('ideabox'));
+  if (storedIdeas){
+    for (i = 0; i < storedIdeas.length; i++){
+      var idea = storedIdeas[i];
+      for
+      // ideaArray.push(new CreateIdea(idea.title, idea.body, idea.id, idea.quality));
+    }
+  }
+}
+
+function clearInputFields(){
+  var titleInput = title.val('');
+  var bodyInput = body.val('');
+}
+
 $('.save-button').on('click', function() {
   var titleInput = title.val();
   var bodyInput = body.val();
@@ -40,18 +56,5 @@ $('.save-button').on('click', function() {
   displayIdea(titleInput, bodyInput, id, quality);
   ideaArray.push(ideabox);
   saveToStorage(ideabox);
+  clearInputFields();
 });
-
-function getStorage() {
-  debugger
-  var ideabox = JSON.parse(localStorage.getItem('ideabox'))
-  if (ideaArray.length !== 0) {
-    ideabox.forEach(function(){
-    displayIdea();
-    })
-  }
-}
-
-//fuction deleteIdea(){
-// use array filter to find unique id and return new array without id
-// }
