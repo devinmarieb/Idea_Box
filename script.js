@@ -61,22 +61,22 @@ $('.save-button').on('click', function() {
 $('ul').on('click', '.delete', function(){
   this.closest('li').remove();
   var id = this.id
-  localStorage.getItem('allIdeas', this.id);
-  localStorage.removeItem('allIdeas', id);
+  localStorage.getItem('allIdeas', 'id');
+  localStorage.removeItem('allIdeas', 'id');
   // var item = function() {
   //   ideaArray.findIndex(this.li)
   // };
   // console.log(item);
 })
-
-function removeItem() {
-  for(var i = 0; i < ideaArray.length; i++){
-    var result = ideaArray[i];
-    if(result.id === this.id){
-      return result;
-    };
-  };
-}
+//
+// function removeItem() {
+//   for(var i = 0; i < ideaArray.length; i++){
+//     var result = ideaArray[i];
+//     if(result.id === this.id){
+//       return result;
+//     };
+//   };
+// }
 
 //upvote button
 // $('ul').on('click', '.up-vote', function() {
