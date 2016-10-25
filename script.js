@@ -2,9 +2,9 @@ var title = $('.title-field');
 var body = $('.body-field');
 var ideaArray = JSON.parse(localStorage.getItem('ideabox')) || [];
 
-// $('document').ready(function(){
-//   getStorage();
-// });
+$('document').ready(function(){
+  getStorage();
+});
 
 function CreateIdea(title, body, id, quality) {
   this.title = title;
@@ -39,13 +39,14 @@ $('.save-button').on('click', function() {
   saveToStorage(ideabox);
 });
 
-// function getStorage() {
-  //  var storedIdeas = ideaArray;
-    //  if (ideaArray.length !== 0) {
-    //use displayIdea to prepend all existing ideas
-  //  console.log('hello')
-  //  }
-  // }
+function getStorage() {
+  debugger
+  if (ideaArray.length !== 0) {
+    ideaArray.forEach(function(){
+      CreateIdea.prototype.displayIdea(this.title, this.body, this.id, this.quality);
+    })
+  }
+}
 
 //fuction deleteIdea(){
 // use array filter to find unique id and return new array without id
