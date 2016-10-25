@@ -1,11 +1,10 @@
 var title = $('.title-field');
 var body = $('.body-field');
 var ideaArray = JSON.parse(localStorage.getItem('ideabox')) || [];
-var ideabox = new CreateIdea
 
-// $('document').ready(function(){
-//   getStorage(ideabox);
-// });
+$('document').ready(function(){
+  getStorage();
+});
 
 function CreateIdea(title, body, id, quality) {
   this.title = title;
@@ -27,6 +26,17 @@ function displayIdea(titleInput, bodyInput, id, quality){
  );
 }
 
+function getStorage(){
+  debugger
+  var storedIdeas = JSON.parse(localStorage.getItem('ideabox'));
+  if (storedIdeas){
+    for (i = 0; i < storedIdeas.length; i++){
+    var idea = storedIdeas[i];
+    this.ideaArray.push(new CreateIdea(idea.title, idea.body, idea.id, idea.quality));
+    }
+  }
+}
+
 function saveToStorage() {
   localStorage.setItem('ideabox', JSON.stringify(ideaArray));
 }
@@ -41,17 +51,3 @@ $('.save-button').on('click', function() {
   ideaArray.push(ideabox);
   saveToStorage(ideabox);
 });
-
-function getStorage() {
-  debugger
-  var ideabox = JSON.parse(localStorage.getItem('ideabox'))
-  if (ideaArray.length !== 0) {
-    ideabox.forEach(function(){
-    displayIdea();
-    })
-  }
-}
-
-//fuction deleteIdea(){
-// use array filter to find unique id and return new array without id
-// }
