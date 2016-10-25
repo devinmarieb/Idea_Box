@@ -41,6 +41,11 @@ function saveToStorage() {
   localStorage.setItem('ideabox', JSON.stringify(ideaArray));
 }
 
+function clearInputFields(){
+  var titleInput = title.val('');
+  var bodyInput = body.val('');
+}
+
 $('.save-button').on('click', function() {
   var titleInput = title.val();
   var bodyInput = body.val();
@@ -50,4 +55,5 @@ $('.save-button').on('click', function() {
   displayIdea(titleInput, bodyInput, id, quality);
   ideaArray.push(ideabox);
   saveToStorage(ideabox);
+  clearInputFields();
 });
