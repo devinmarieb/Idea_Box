@@ -1,0 +1,75 @@
+header {
+  background-color: #E5F3F2;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input, .save-button {
+  font-size: 15pt;
+  height: 25px;
+  margin: 10px;
+  width: 40%;
+}
+
+.save-button{
+  background-color: #00A79D;
+  border: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-idea {
+  border-bottom: 1px solid #D1D3D4;
+  margin: 30px;
+  padding-bottom: 20px;
+  width: 50%;
+}
+
+.delete {
+  background-image: url('images/delete.svg');
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+}
+
+.delete:hover {
+  background-image: url('images/delete-hover.svg')
+}
+
+.up-vote {
+  background-image: url('images/upvote.svg');
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+}
+
+.up-vote:hover {
+  background-image: url('images/upvote-hover.svg')
+}
+
+.down-vote {
+  background-image: url('images/downvote.svg');
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+}
+
+.down-vote:hover {
+  background-image: url('images/downvote-hover.svg')
+}
