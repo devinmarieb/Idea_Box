@@ -41,7 +41,7 @@ textarea {
 
 .search-field{
   display: block;
-  margin: 10px auto;
+  margin: 15px auto;
   width: 40%;
 }
 
@@ -53,13 +53,14 @@ ul {
 
 .new-idea {
   border-bottom: 1px solid #D1D3D4;
-  margin: 30px;
+  margin-top: 15px;
   padding-bottom: 20px;
   width: 40%;
 }
 
 .title-input {
   color: #6D6E71;
+  display: inline-block;
   font-size: 18pt;
   height: inherit;
 }
@@ -68,6 +69,7 @@ ul {
   color: #939598;
   font-size: 12pt;
   height: inherit;
+  margin-top: 10px;
 }
 
 .rating {
@@ -97,6 +99,7 @@ button:focus {
   border-radius: 50%;
   height: 20px;
   width: 20px;
+  margin-left: 82%;
 }
 
 .delete:hover {
