@@ -26,17 +26,21 @@ input, textarea, .save-button {
   font-size: 15pt;
   margin: 7px;
   width: 40%;
+  outline: none;
 }
 
 input, textarea {
   border: 1px solid #D1D3D4;
 }
 
+input:focus, textarea:focus {
+  border: 1px solid #00A79D;
+}
+
 textarea {
   resize: none;
   height: 23px;
-  overflow: hidden;
-  outline: none;
+  overflow: auto;
 }
 
 .search-field{
@@ -65,6 +69,10 @@ ul {
   height: inherit;
   max-width: 85%;
   overflow: hidden;
+<<<<<<< HEAD
+=======
+  outline: none;
+>>>>>>> 15044e6da675e0ff5aa07b36ae948c6d04b9b3aa
 }
 
 .body-input {
@@ -72,6 +80,7 @@ ul {
   font-size: 12pt;
   height: inherit;
   margin-top: 10px;
+  outline: none;
 }
 
 .rating {
@@ -101,9 +110,13 @@ button:focus {
   border-radius: 50%;
   height: 20px;
   width: 20px;
+<<<<<<< HEAD
   /*margin-left: 82%;*/
   float: right;
 
+=======
+  float: right;
+>>>>>>> 15044e6da675e0ff5aa07b36ae948c6d04b9b3aa
 }
 
 .delete:hover {
