@@ -6,6 +6,35 @@ $('document').ready(function(){
   getStorage();
 });
 
+$('.save-button').on('click', function() {
+  var titleInput = title.val();
+  var bodyInput = body.val();
+  var allIdeas = new CreateIdea(titleInput, bodyInput);
+  var id = allIdeas.id;
+  var quality = allIdeas.quality;
+  displayIdea(titleInput, bodyInput, id, quality);
+  ideaArray.push(allIdeas);
+  saveToStorage(allIdeas);
+  clearInputFields();
+});
+
+$('ul').on('click', '.delete', function(){
+  var id = this.closest('li').id
+  removeIdea(id);
+  $(this).closest('li').remove();
+})
+
+function removeIdea(id){
+  var index;
+  for(var i = 0; i < ideaArray.length; i ++){
+    if(ideaArray[i].id === parseInt(id)){
+      index = i;
+    }
+  }
+  ideaArray.splice(index, 1);
+  saveToStorage();
+}
+
 function CreateIdea(title, body, id, quality) {
   this.title = title;
   this.body = body;
@@ -45,38 +74,6 @@ function clearInputFields(){
   var bodyInput = body.val('');
 }
 
-$('.save-button').on('click', function() {
-  var titleInput = title.val();
-  var bodyInput = body.val();
-  var allIdeas = new CreateIdea(titleInput, bodyInput);
-  var id = allIdeas.id;
-  var quality = allIdeas.quality;
-  displayIdea(titleInput, bodyInput, id, quality);
-  ideaArray.push(allIdeas);
-  saveToStorage(allIdeas);
-  clearInputFields();
-});
-
-//delete button
-$('ul').on('click', '.delete', function(){
-  this.closest('li').remove();
-  var id = this.id
-  localStorage.getItem('allIdeas', 'id');
-  localStorage.removeItem('allIdeas', 'id');
-  // var item = function() {
-  //   ideaArray.findIndex(this.li)
-  // };
-  // console.log(item);
-})
-//
-// function removeItem() {
-//   for(var i = 0; i < ideaArray.length; i++){
-//     var result = ideaArray[i];
-//     if(result.id === this.id){
-//       return result;
-//     };
-//   };
-// }
 
 //upvote button
 // $('ul').on('click', '.up-vote', function() {
