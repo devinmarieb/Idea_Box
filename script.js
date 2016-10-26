@@ -36,6 +36,23 @@ $('ul').on('blur', '.body-input', function(){
   editBody(id, newBody);
 })
 
+$('ul').on('click', '.up-vote', function() {
+  console.log('before for loop', ideaArray)
+  var quality = $(this).closest("li").find(".user-quality").text();
+  var newQuality = upVote(quality);
+  var id = this.closest('li').id
+  console.log('old',quality,'new', newQuality)
+  for(var i = 0; i < ideaArray.length; i ++){
+    if(ideaArray[i].id == id){
+      ideaArray[i].quality = newQuality;
+      ideaArray.splice(i, 1, ideaArray[i]);
+    }
+  }
+  $(this).closest("li").find(".user-quality").text(newQuality);
+  console.log('before save function', ideaArray)
+  saveToStorage();
+})
+
 function CreateIdea(title, body, id, quality) {
   this.title = title;
   this.body = body;
@@ -45,15 +62,15 @@ function CreateIdea(title, body, id, quality) {
 
 function displayIdea(titleInput, bodyInput, id, quality){
   $('.idea-list').prepend(
-   `<li id=${id} class="new-idea">
-   <h2 class="title-input" contenteditable="true">${titleInput}</h2>
-   <button class="delete" type="button" name="delete" img src="images/delete.svg"></button>
-   <p class="body-input" contenteditable="true">${bodyInput}</p>
-   <p class="rating">quality: <span class="user-quality">swill</span></p>
-   <button class="up-vote" type="button" name="up-vote" img src="images/upvote.svg"></button>
-   <button class="down-vote" type="button" name="down-vote" img src="images/downvote.svg"></button>
-   </li>`
- );
+    `<li id=${id} class="new-idea">
+    <h2 class="title-input" contenteditable="true">${titleInput}</h2>
+    <button class="delete" type="button" name="delete" img src="images/delete.svg"></button>
+    <p class="body-input" contenteditable="true">${bodyInput}</p>
+    <p class="rating">quality: <span class="user-quality">swill</span></p>
+    <button class="up-vote" type="button" name="up-vote" img src="images/upvote.svg"></button>
+    <button class="down-vote" type="button" name="down-vote" img src="images/downvote.svg"></button>
+    </li>`
+  );
 }
 
 function saveToStorage() {
@@ -103,6 +120,17 @@ function removeIdea(id, index){
     }
   }
   saveToStorage();
+}
+
+function upVote(quality){
+  switch (quality) {
+    case 'swill':
+      return 'plausible';
+    case 'plausible':
+      return 'genius';
+    default:
+      return "genius"
+  }
 }
 
 //lastIndexOf for search - jQuery//
