@@ -24,73 +24,33 @@ $('ul').on('click', '.delete', function(){
   $(this).closest('li').remove();
 })
 
-function removeIdea(id){
-  var index;
-  for(var i = 0; i < ideaArray.length; i ++){
-    if(ideaArray[i].id === parseInt(id)){
-      index = i;
-    }
-  }
-  ideaArray.splice(index, 1);
-  saveToStorage();
-}
-
-// upvote button
-$('ul').on('click', '.up-vote', function() {
-var quality = $(this).closest("li").find(".user-quality").text();
-var newQuality = upVote(quality);
-$(this).closest("li").find(".user-quality").text(newQuality);
-  })
-
-function upVote(quality){
-  switch (quality) {
-    case 'swill':
-      return 'plausible';
-    case 'plausible':
-      return 'genius';
-    default:
-      return "genius"
-  }
-}
-
-$('ul').on('click', '.down-vote', function() {
-  var quality = $(this).closest("li").find(".user-quality").text();
-  var newQuality = downVote(quality);
-  $(this).closest("li").find(".user-quality").text(newQuality);
+$('ul').on('blur', '.title-input', function(){
+  var id = this.closest('li').id;
+  var newTitle = $(this).text();
+  editTitle(id, newTitle);
 })
 
-function downVote(quality) {
-  switch (quality) {
-    case 'genius':
-      return 'plausible';
-    case 'plausible':
-      return 'swill';
-    default:
-      return 'swill'
+$('ul').on('blur', '.body-input', function(){
+  var id = this.closest('li').id;
+  var newBody = $(this).text();
+  editBody(id, newBody);
+})
+
+$('ul').on('click', '.up-vote', function() {
+  console.log('before for loop', ideaArray)
+  var quality = $(this).closest("li").find(".user-quality").text();
+  var newQuality = upVote(quality);
+  var id = this.closest('li').id
+  console.log('old',quality,'new', newQuality)
+  for(var i = 0; i < ideaArray.length; i ++){
+    if(ideaArray[i].id == id){
+      ideaArray[i].quality = newQuality;
+      ideaArray.splice(i, 1, ideaArray[i]);
+    }
   }
-}
-//   var vote = $(this).closest('li').find('.user-quality');
-//   debugger
-//   console.log('hello')
-//   incrementQuality(vote)
-// })
-//
-// function incrementQuality(vote) {
-//   var better;
-//   for(var i = 0; i < 3; i++){
-//     if (better === 1) {
-//       $('.user-quality').text('plausible');
-//     } else if (better >=2) {
-//       $('.user-quality').text('genius');
-//     };
-//   }
-// }
-
-
-
-// downvote button
-$('ul').on('click', '.down-vote', function() {
-  this.closest('li')
+  $(this).closest("li").find(".user-quality").text(newQuality);
+  console.log('before save function', ideaArray)
+  saveToStorage();
 })
 
 function CreateIdea(title, body, id, quality) {
@@ -102,15 +62,15 @@ function CreateIdea(title, body, id, quality) {
 
 function displayIdea(titleInput, bodyInput, id, quality){
   $('.idea-list').prepend(
-   `<li id=${id} class="new-idea">
-   <h2 class="title-input">${titleInput}</h2>
-   <button class="delete" type="button" name="delete" img src="images/delete.svg"></button>
-   <p class="body-input">${bodyInput}</p>
-   <p class="rating">quality: <span class="user-quality">swill</span></p>
-   <button class="up-vote" type="button" name="up-vote" img src="images/upvote.svg"></button>
-   <button class="down-vote" type="button" name="down-vote" img src="images/downvote.svg"></button>
-   </li>`
- );
+    `<li id=${id} class="new-idea">
+    <h2 class="title-input" contenteditable="true">${titleInput}</h2>
+    <button class="delete" type="button" name="delete" img src="images/delete.svg"></button>
+    <p class="body-input" contenteditable="true">${bodyInput}</p>
+    <p class="rating">quality: <span class="user-quality">swill</span></p>
+    <button class="up-vote" type="button" name="up-vote" img src="images/upvote.svg"></button>
+    <button class="down-vote" type="button" name="down-vote" img src="images/downvote.svg"></button>
+    </li>`
+  );
 }
 
 function saveToStorage() {
@@ -132,4 +92,45 @@ function clearInputFields(){
   var bodyInput = body.val('');
 }
 
-//last index of for search
+function editTitle(id, newTitle){
+  for(var i = 0; i < ideaArray.length; i++){
+    if(ideaArray[i].id === parseInt(id)){
+      ideaArray[i].title = newTitle;
+      // var updatedIdea = ideaArray[i];
+      ideaArray.splice(i, 1, ideaArray[i]);
+    }
+  }
+  saveToStorage();
+}
+
+function editBody(id, newBody){
+  for(var i = 0; i < ideaArray.length; i++){
+    if(ideaArray[i].id === parseInt(id)){
+      ideaArray[i].body = newBody;
+      ideaArray.splice(i, 1, ideaArray[i]);
+    }
+    saveToStorage();
+  }
+}
+
+function removeIdea(id, index){
+  for(var i = 0; i < ideaArray.length; i++){
+    if(ideaArray[i].id === parseInt(id)){
+      ideaArray.splice(i, 1);
+    }
+  }
+  saveToStorage();
+}
+
+function upVote(quality){
+  switch (quality) {
+    case 'swill':
+      return 'plausible';
+    case 'plausible':
+      return 'genius';
+    default:
+      return "genius"
+  }
+}
+
+//lastIndexOf for search - jQuery//
