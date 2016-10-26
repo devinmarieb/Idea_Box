@@ -35,6 +35,28 @@ function removeIdea(id){
   saveToStorage();
 }
 
+// upvote button
+$('ul').on('.click', '.up-vote', function() {
+  this.closest('li')
+  var better = 0;
+  ++better;
+  if (better == 1) {
+    span.innerText = "plausible";
+  } else if (better >=2) {
+    span.innerText = "genius";
+  };
+})
+
+// when button is clicked, increments up twice (++var)
+// if clicked once, quality --> plausible
+// if clicked twice, quality --> genius
+// })
+
+// downvote button
+$('ul').on('click', '.down-vote', function() {
+  this.closest('li')
+})
+
 function CreateIdea(title, body, id, quality) {
   this.title = title;
   this.body = body;
@@ -72,15 +94,5 @@ function getStorage(){
 function clearInputFields(){
   var titleInput = title.val('');
   var bodyInput = body.val('');
-
-upvote button
-$('ul').on('click', '.up-vote', function() {
-  this.closest('li').
-})
-
-downvote button
-$('ul').on('click', '.down-vote', function() {
-  this.closest('li')
-})
-
+}
 //last index of for search
