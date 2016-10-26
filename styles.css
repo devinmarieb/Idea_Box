@@ -29,6 +29,10 @@ input, .save-button {
   width: 40%;
 }
 
+input {
+  border: 1px solid #D1D3D4;
+}
+
 .search-field{
   display: block;
   margin: 10px auto;
@@ -114,7 +118,6 @@ button:focus {
   border-radius: 50%;
   height: 20px;
   margin: 5px;
-
   width: 20px;
 }
 
@@ -123,5 +126,11 @@ button:focus {
 }
 
 @media screen and (max-width: 550px) {
-  
+  input, .save-button, .new-idea, .search-field{
+    width: 90%;
+  }
+  .body-field{
+    height: 90px;
+  }
+
 }
