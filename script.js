@@ -5,6 +5,7 @@ var ideaArray = JSON.parse(localStorage.getItem('newUserIdea')) || [];
 
 $('document').ready(function(){
   getStorage();
+  // $('textarea').autoResize();
 });
 
 $('.save-button').on('click', function() {
