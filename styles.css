@@ -1,25 +1,38 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
 header {
+  align-items: center;
   background-color: #E5F3F2;
-  padding: 50px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+h1 {
+  color: #00A79D;
+  font-family: 'Roboto Slab', serif;
+  font-size: 35pt;
+  font-weight: 700;
+  margin: 20px;
+}
+
+.box {
+  color: #6D6E71;
 }
 
 input, .save-button {
   font-size: 15pt;
   height: 25px;
-  margin: 10px;
+  margin: 7px;
   width: 40%;
 }
 
-.save-button{
-  background-color: #00A79D;
-  border: none;
-}
-
-button:focus {
-  outline: none;
+.search-field{
+  display: block;
+  margin: 10px auto;
+  width: 40%;
 }
 
 ul {
@@ -32,8 +45,38 @@ ul {
   border-bottom: 1px solid #D1D3D4;
   margin: 30px;
   padding-bottom: 20px;
-  width: 50%;
+  width: 40%;
 }
+
+.title-input {
+  color: #6D6E71;
+  font-size: 18pt;
+}
+
+.body-input {
+  color: #939598;
+  font-size: 12pt;
+}
+
+.rating, .user-quality {
+  color: #6D6E71;
+}
+
+.save-button{
+  background-color: #00A79D;
+  border: none;
+  color: #FFFFFF;
+  margin-bottom: 30px;
+}
+
+.save-button:hover {
+  background-color: #045E55;
+}
+
+button:focus {
+  outline: none;
+}
+
 
 .delete {
   background-image: url('images/delete.svg');
