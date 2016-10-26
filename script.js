@@ -37,20 +37,20 @@ function removeIdea(id){
 
 // upvote button
 $('ul').on('.click', '.up-vote', function() {
-  this.closest('li')
-  var better = 0;
-  ++better;
-  if (better == 1) {
-    span.innerText = "plausible";
-  } else if (better >=2) {
-    span.innerText = "genius";
-  };
+  var vote = this.closest('li').rating;
+  incrementQuality(span)
 })
 
-// when button is clicked, increments up twice (++var)
-// if clicked once, quality --> plausible
-// if clicked twice, quality --> genius
-// })
+function incrementQuality(span) {
+  var better;
+  for(var i = 0; i < 3; i++){
+    if (better == 1) {
+      span.innerText = "plausible";
+    } else if (better >=2) {
+      span.innerText = "genius";
+    };
+  }
+}
 
 // downvote button
 $('ul').on('click', '.down-vote', function() {
