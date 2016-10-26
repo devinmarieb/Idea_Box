@@ -1,10 +1,11 @@
 var title = $('.title-field');
 var body = $('.body-field');
+var search = $('.search-field');
 var ideaArray = JSON.parse(localStorage.getItem('newUserIdea')) || [];
 
 $('document').ready(function(){
   getStorage();
-  $('textarea').autoResize();
+  // $('textarea').autoResize();
 });
 
 $('.save-button').on('click', function() {
@@ -77,7 +78,7 @@ function displayIdea(titleInput, bodyInput, id, quality){
     `<li id=${id} class="new-idea">
     <h2 class="title-input" contenteditable="true">${titleInput}</h2>
     <button class="delete" type="button" name="delete" img src="images/delete.svg"></button>
-    <p class="body-input" contenteditable="true">${bodyInput}</p>
+    <h3 class="body-input" contenteditable="true">${bodyInput}</p>
     <button class="up-vote" type="button" name="up-vote" img src="images/upvote.svg"></button>
     <button class="down-vote" type="button" name="down-vote" img src="images/downvote.svg"></button>
     <p class="rating">quality: <span class="user-quality">${quality}</span></p>
@@ -155,6 +156,9 @@ function downVote(quality) {
   }
 }
 
-// search function use keyup and array.filter()
-
-//lastIndexOf for search - jQuery//
+search.on('keyup', function(){
+  var search = $(this).val();
+  $('h2:contains(' + search + ')').closest('.new-idea').show();
+  $('h2:not(:contains(' + search + '))').closest('.new-idea').hide();
+  $('h3:contains(' + search + ')').closest('.new-idea').show();
+})
