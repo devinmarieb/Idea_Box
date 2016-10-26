@@ -155,6 +155,7 @@ function downVote(quality) {
   }
 }
 
+
 // search function use keyup and array.filter()
 
 //lastIndexOf for search - jQuery//
