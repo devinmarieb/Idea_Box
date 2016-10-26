@@ -77,9 +77,9 @@ function displayIdea(titleInput, bodyInput, id, quality){
     <h2 class="title-input" contenteditable="true">${titleInput}</h2>
     <button class="delete" type="button" name="delete" img src="images/delete.svg"></button>
     <p class="body-input" contenteditable="true">${bodyInput}</p>
-    <p class="rating">quality: <span class="user-quality">${quality}</span></p>
     <button class="up-vote" type="button" name="up-vote" img src="images/upvote.svg"></button>
     <button class="down-vote" type="button" name="down-vote" img src="images/downvote.svg"></button>
+    <p class="rating">quality: <span class="user-quality">${quality}</span></p>
     </li>`
   );
 }
