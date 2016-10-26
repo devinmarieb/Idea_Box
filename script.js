@@ -66,6 +66,14 @@ $('ul').on('click', '.down-vote', function() {
   saveToStorage();
 })
 
+search.on('keyup', function(){
+  var search = $(this).val();
+  $('h2:contains(' + search + ')').closest('.new-idea').show();
+  $('h2:not(:contains(' + search + '))').closest('.new-idea').hide();
+  $('h3:contains(' + search + ')').closest('.new-idea').show();
+});
+//blog.grapii.com/2010/08/how-to-build-a-simple-search-filter-with-jquery/
+
 function CreateIdea(title, body, id, quality) {
   this.title = title;
   this.body = body;
@@ -156,10 +164,4 @@ function downVote(quality) {
   }
 }
 
-search.on('keyup', function(){
-  var search = $(this).val();
-  $('h2:contains(' + search + ')').closest('.new-idea').show();
-  $('h2:not(:contains(' + search + '))').closest('.new-idea').hide();
-  $('h3:contains(' + search + ')').closest('.new-idea').show();
-});
 //blog.grapii.com/2010/08/how-to-build-a-simple-search-filter-with-jquery/
