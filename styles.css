@@ -63,6 +63,8 @@ ul {
   display: inline-block;
   font-size: 18pt;
   height: inherit;
+  max-width: 85%;
+  overflow: hidden;
 }
 
 .body-input {
@@ -99,7 +101,9 @@ button:focus {
   border-radius: 50%;
   height: 20px;
   width: 20px;
-  margin-left: 82%;
+  /*margin-left: 82%;*/
+  float: right;
+
 }
 
 .delete:hover {
