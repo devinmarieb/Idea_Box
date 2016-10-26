@@ -24,7 +24,26 @@ $('ul').on('click', '.delete', function(){
   $(this).closest('li').remove();
 })
 
-function removeIdea(id){
+$('ul').on('blur', '.title-input', function(){
+  var id = this.closest('li').id
+  var newTitle = $(this).text();
+  editTitle(id, newTitle);
+})
+
+function editTitle(id, newTitle){
+  var index;
+  for(var i = 0; i < ideaArray.length; i ++){
+    if(ideaArray[i].id === parseInt(id)){
+      index = i;
+    }
+  }
+  debugger
+  var newUserIdea = JSON.parse(localStorage.getItem('newUserIdea'))[index];
+  newUserIdea.title = newTitle;
+  saveToStorage(); //not working
+}
+
+function removeIdea(id, index){
   var index;
   for(var i = 0; i < ideaArray.length; i ++){
     if(ideaArray[i].id === parseInt(id)){
@@ -45,9 +64,9 @@ function CreateIdea(title, body, id, quality) {
 function displayIdea(titleInput, bodyInput, id, quality){
   $('.idea-list').prepend(
    `<li id=${id} class="new-idea">
-   <h2 class="title-input">${titleInput}</h2>
+   <h2 class="title-input" contenteditable="true">${titleInput}</h2>
    <button class="delete" type="button" name="delete" img src="images/delete.svg"></button>
-   <p class="body-input">${bodyInput}</p>
+   <p class="body-input" contenteditable="true">${bodyInput}</p>
    <p class="rating">quality: <span class="user-quality">swill</span></p>
    <button class="up-vote" type="button" name="up-vote" img src="images/upvote.svg"></button>
    <button class="down-vote" type="button" name="down-vote" img src="images/downvote.svg"></button>
@@ -73,5 +92,16 @@ function clearInputFields(){
   var titleInput = title.val('');
   var bodyInput = body.val('');
 }
+
+
+
+// function findIdea(id, index) {
+//   var index;
+//   for(var i = 0; i < ideaArray.length; i ++){
+//     if(ideaArray[i].id === parseInt(id)){
+//       index = i;
+//     }
+//   }
+// }
 
 //lastIndexOf for search - jQuery//
