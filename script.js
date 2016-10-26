@@ -75,6 +75,7 @@ search.on('keyup', function(){
 
 title.on('keyup', function(){
   $('.save-button').prop('disabled', false);
+  $('.save-button').css('opacity', 1);
 })
 
 function CreateIdea(title, body, id, quality) {
@@ -115,6 +116,7 @@ function clearInputFields(){
   var titleInput = title.val('');
   var bodyInput = body.val('');
   $('.save-button').prop('disabled', true);
+  $('.save-button').css('opacity', .5);
 }
 
 function editTitle(id, newTitle){
