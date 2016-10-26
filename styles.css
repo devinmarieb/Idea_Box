@@ -121,3 +121,7 @@ button:focus {
 .down-vote:hover {
   background-image: url('images/downvote-hover.svg')
 }
+
+@media screen and (max-width: 550px) {
+  
+}
