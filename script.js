@@ -25,32 +25,44 @@ $('ul').on('click', '.delete', function(){
 })
 
 $('ul').on('blur', '.title-input', function(){
-  var id = this.closest('li').id
+  var id = this.closest('li').id;
   var newTitle = $(this).text();
   editTitle(id, newTitle);
 })
 
+$('ul').on('blur', '.body-input', function(){
+  var id = this.closest('li').id;
+  var newBody = $(this).text();
+  editBody(id, newBody);
+})
+
 function editTitle(id, newTitle){
-  var index;
-  for(var i = 0; i < ideaArray.length; i ++){
+  for(var i = 0; i < ideaArray.length; i++){
     if(ideaArray[i].id === parseInt(id)){
-      index = i;
+      ideaArray[i].title = newTitle;
+      // var updatedIdea = ideaArray[i];
+      ideaArray.splice(i, 1, ideaArray[i]);
     }
   }
-  debugger
-  var newUserIdea = JSON.parse(localStorage.getItem('newUserIdea'))[index];
-  newUserIdea.title = newTitle;
-  saveToStorage(); //not working
+  saveToStorage();
+}
+
+function editBody(id, newBody){
+  for(var i = 0; i < ideaArray.length; i++){
+    if(ideaArray[i].id === parseInt(id)){
+      ideaArray[i].body = newBody;
+      ideaArray.splice(i, 1, ideaArray[i]);
+    }
+    saveToStorage();
+  }
 }
 
 function removeIdea(id, index){
-  var index;
-  for(var i = 0; i < ideaArray.length; i ++){
+  for(var i = 0; i < ideaArray.length; i++){
     if(ideaArray[i].id === parseInt(id)){
-      index = i;
+      ideaArray.splice(i, 1);
     }
   }
-  ideaArray.splice(index, 1);
   saveToStorage();
 }
 
@@ -92,16 +104,5 @@ function clearInputFields(){
   var titleInput = title.val('');
   var bodyInput = body.val('');
 }
-
-
-
-// function findIdea(id, index) {
-//   var index;
-//   for(var i = 0; i < ideaArray.length; i ++){
-//     if(ideaArray[i].id === parseInt(id)){
-//       index = i;
-//     }
-//   }
-// }
 
 //lastIndexOf for search - jQuery//
