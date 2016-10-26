@@ -69,7 +69,10 @@ ul {
   height: inherit;
   max-width: 85%;
   overflow: hidden;
+<<<<<<< HEAD
+=======
   outline: none;
+>>>>>>> 15044e6da675e0ff5aa07b36ae948c6d04b9b3aa
 }
 
 .body-input {
@@ -107,7 +110,13 @@ button:focus {
   border-radius: 50%;
   height: 20px;
   width: 20px;
+<<<<<<< HEAD
+  /*margin-left: 82%;*/
   float: right;
+
+=======
+  float: right;
+>>>>>>> 15044e6da675e0ff5aa07b36ae948c6d04b9b3aa
 }
 
 .delete:hover {

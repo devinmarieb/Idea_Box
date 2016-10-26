@@ -7,7 +7,7 @@ $('document').ready(function(){
   getStorage();
 });
 
-$('.save-button').on('click', function() {
+$('.save-button').on('click', function(){
   var titleInput = title.val();
   var bodyInput = body.val();
   var newUserIdea = new CreateIdea(titleInput, bodyInput);
@@ -73,6 +73,10 @@ search.on('keyup', function(){
 });
 //blog.grapii.com/2010/08/how-to-build-a-simple-search-filter-with-jquery/
 
+title.on('keyup', function(){
+  $('.save-button').prop('disabled', false);
+})
+
 function CreateIdea(title, body, id, quality) {
   this.title = title;
   this.body = body;
@@ -110,6 +114,7 @@ function getStorage(){
 function clearInputFields(){
   var titleInput = title.val('');
   var bodyInput = body.val('');
+  $('.save-button').prop('disabled', true);
 }
 
 function editTitle(id, newTitle){
