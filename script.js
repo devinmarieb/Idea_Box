@@ -4,6 +4,7 @@ var ideaArray = JSON.parse(localStorage.getItem('newUserIdea')) || [];
 
 $('document').ready(function(){
   getStorage();
+  $('textarea').autoResize();
 });
 
 $('.save-button').on('click', function() {
@@ -107,7 +108,6 @@ function editTitle(id, newTitle){
   for(var i = 0; i < ideaArray.length; i++){
     if(ideaArray[i].id === parseInt(id)){
       ideaArray[i].title = newTitle;
-      // var updatedIdea = ideaArray[i];
       ideaArray.splice(i, 1, ideaArray[i]);
     }
   }

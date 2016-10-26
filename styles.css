@@ -22,19 +22,26 @@ h1 {
   color: #6D6E71;
 }
 
-input, .save-button {
+input, textarea, .save-button {
   font-size: 15pt;
   margin: 7px;
   width: 40%;
 }
 
-input {
+input, textarea {
   border: 1px solid #D1D3D4;
+}
+
+textarea {
+  resize: none;
+  height: 23px;
+  overflow: hidden;
+  outline: none;
 }
 
 .search-field{
   display: block;
-  margin: 10px auto;
+  margin: 15px auto;
   width: 40%;
 }
 
@@ -46,13 +53,14 @@ ul {
 
 .new-idea {
   border-bottom: 1px solid #D1D3D4;
-  margin: 30px;
+  margin-top: 15px;
   padding-bottom: 20px;
   width: 40%;
 }
 
 .title-input {
   color: #6D6E71;
+  display: inline-block;
   font-size: 18pt;
   height: inherit;
 }
@@ -61,6 +69,7 @@ ul {
   color: #939598;
   font-size: 12pt;
   height: inherit;
+  margin-top: 10px;
 }
 
 .rating {
@@ -90,6 +99,7 @@ button:focus {
   border-radius: 50%;
   height: 20px;
   width: 20px;
+  margin-left: 82%;
 }
 
 .delete:hover {
@@ -125,11 +135,13 @@ button:focus {
 }
 
 @media screen and (max-width: 550px) {
-  input, .save-button, .new-idea, .search-field{
+  input, textarea, .save-button, .new-idea, .search-field{
     width: 90%;
   }
-  .body-field{
+  textarea {
     height: 90px;
   }
-
+  .body-field::-webkit-input-placeholder {
+    vertical-align: text-top;
+  }
 }
