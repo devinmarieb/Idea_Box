@@ -37,11 +37,9 @@ $('ul').on('blur', '.body-input', function(){
 })
 
 $('ul').on('click', '.up-vote', function() {
-  console.log('before for loop', ideaArray)
   var quality = $(this).closest("li").find(".user-quality").text();
   var newQuality = upVote(quality);
   var id = this.closest('li').id
-  console.log('old',quality,'new', newQuality)
   for(var i = 0; i < ideaArray.length; i ++){
     if(ideaArray[i].id == id){
       ideaArray[i].quality = newQuality;
@@ -49,7 +47,6 @@ $('ul').on('click', '.up-vote', function() {
     }
   }
   $(this).closest("li").find(".user-quality").text(newQuality);
-  console.log('before save function', ideaArray)
   saveToStorage();
 })
 
@@ -66,7 +63,7 @@ function displayIdea(titleInput, bodyInput, id, quality){
     <h2 class="title-input" contenteditable="true">${titleInput}</h2>
     <button class="delete" type="button" name="delete" img src="images/delete.svg"></button>
     <p class="body-input" contenteditable="true">${bodyInput}</p>
-    <p class="rating">quality: <span class="user-quality">swill</span></p>
+    <p class="rating">quality: <span class="user-quality">${quality}</span></p>
     <button class="up-vote" type="button" name="up-vote" img src="images/upvote.svg"></button>
     <button class="down-vote" type="button" name="down-vote" img src="images/downvote.svg"></button>
     </li>`
