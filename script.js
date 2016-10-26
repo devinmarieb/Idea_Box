@@ -37,13 +37,6 @@ $('ul').on('blur', '.body-input', function(){
 })
 
 $('ul').on('click', '.up-vote', function() {
-  debugger
-  var id = this.closest('li').id
-  var newQuality = $('.user-quality').text();
-  upVote(id, newQuality)
-})
-
-$('ul').on('click', '.up-vote', function() {
   var quality = $(this).closest("li").find(".user-quality").text();
   var newQuality = upVote(quality);
   var id = this.closest('li').id
