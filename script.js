@@ -35,6 +35,64 @@ function removeIdea(id){
   saveToStorage();
 }
 
+// upvote button
+$('ul').on('click', '.up-vote', function() {
+var quality = $(this).closest("li").find(".user-quality").text();
+var newQuality = upVote(quality);
+$(this).closest("li").find(".user-quality").text(newQuality);
+  })
+
+function upVote(quality){
+  switch (quality) {
+    case 'swill':
+      return 'plausible';
+    case 'plausible':
+      return 'genius';
+    default:
+      return "genius"
+  }
+}
+
+$('ul').on('click', '.down-vote', function() {
+  var quality = $(this).closest("li").find(".user-quality").text();
+  var newQuality = downVote(quality);
+  $(this).closest("li").find(".user-quality").text(newQuality);
+})
+
+function downVote(quality) {
+  switch (quality) {
+    case 'genius':
+      return 'plausible';
+    case 'plausible':
+      return 'swill';
+    default:
+      return 'swill'
+  }
+}
+//   var vote = $(this).closest('li').find('.user-quality');
+//   debugger
+//   console.log('hello')
+//   incrementQuality(vote)
+// })
+//
+// function incrementQuality(vote) {
+//   var better;
+//   for(var i = 0; i < 3; i++){
+//     if (better === 1) {
+//       $('.user-quality').text('plausible');
+//     } else if (better >=2) {
+//       $('.user-quality').text('genius');
+//     };
+//   }
+// }
+
+
+
+// downvote button
+$('ul').on('click', '.down-vote', function() {
+  this.closest('li')
+})
+
 function CreateIdea(title, body, id, quality) {
   this.title = title;
   this.body = body;
@@ -74,4 +132,4 @@ function clearInputFields(){
   var bodyInput = body.val('');
 }
 
-//lastIndexOf for search - jQuery//
+//last index of for search
