@@ -50,6 +50,20 @@ $('ul').on('click', '.up-vote', function() {
   saveToStorage();
 })
 
+$('ul').on('click', '.down-vote', function() {
+  var quality = $(this).closest("li").find(".user-quality").text();
+  var newQuality = downVote(quality);
+  var id = this.closest('li').id
+  for(var i = 0; i < ideaArray.length; i ++){
+    if(ideaArray[i].id == id){
+      ideaArray[i].quality = newQuality;
+      ideaArray.splice(i, 1, ideaArray[i]);
+    }
+  }
+  $(this).closest("li").find(".user-quality").text(newQuality);
+  saveToStorage();
+})
+
 function CreateIdea(title, body, id, quality) {
   this.title = title;
   this.body = body;
@@ -127,6 +141,17 @@ function upVote(quality){
       return 'genius';
     default:
       return "genius"
+  }
+}
+
+function downVote(quality) {
+  switch (quality) {
+    case 'genius':
+    return 'plausible';
+    case 'plausible':
+    return 'swill';
+    default:
+    return 'swill'
   }
 }
 
