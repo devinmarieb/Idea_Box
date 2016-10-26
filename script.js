@@ -1,6 +1,6 @@
 var title = $('.title-field');
 var body = $('.body-field');
-var ideaArray = JSON.parse(localStorage.getItem('allIdeas')) || [];
+var ideaArray = JSON.parse(localStorage.getItem('newUserIdea')) || [];
 
 $('document').ready(function(){
   getStorage();
@@ -9,12 +9,12 @@ $('document').ready(function(){
 $('.save-button').on('click', function() {
   var titleInput = title.val();
   var bodyInput = body.val();
-  var allIdeas = new CreateIdea(titleInput, bodyInput);
-  var id = allIdeas.id;
-  var quality = allIdeas.quality;
+  var newUserIdea = new CreateIdea(titleInput, bodyInput);
+  var id = newUserIdea.id;
+  var quality = newUserIdea.quality;
   displayIdea(titleInput, bodyInput, id, quality);
-  ideaArray.push(allIdeas);
-  saveToStorage(allIdeas);
+  ideaArray.push(newUserIdea);
+  saveToStorage(newUserIdea);
   clearInputFields();
 });
 
@@ -56,11 +56,11 @@ function displayIdea(titleInput, bodyInput, id, quality){
 }
 
 function saveToStorage() {
-  localStorage.setItem('allIdeas', JSON.stringify(ideaArray));
+  localStorage.setItem('newUserIdea', JSON.stringify(ideaArray));
 }
 
 function getStorage(){
-  var storedIdeas = JSON.parse(localStorage.getItem('allIdeas'));
+  var storedIdeas = JSON.parse(localStorage.getItem('newUserIdea'));
   if (storedIdeas){
     for (i = 0; i < storedIdeas.length; i++){
       var idea = storedIdeas[i];
@@ -72,17 +72,15 @@ function getStorage(){
 function clearInputFields(){
   var titleInput = title.val('');
   var bodyInput = body.val('');
-}
 
+upvote button
+$('ul').on('click', '.up-vote', function() {
+  this.closest('li').
+})
 
-//upvote button
-// $('ul').on('click', '.up-vote', function() {
-//   this.closest('li').
-// })
-
-//downvote button
-// $('ul').on('click', '.down-vote', function() {
-//   this.closest('li')
-// })
+downvote button
+$('ul').on('click', '.down-vote', function() {
+  this.closest('li')
+})
 
 //last index of for search
