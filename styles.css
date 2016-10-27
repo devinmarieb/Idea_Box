@@ -67,9 +67,9 @@ ul {
   display: inline-block;
   font-size: 18pt;
   height: inherit;
+  line-height: inherit;
   max-width: 85%;
   outline: none;
-  overflow: hidden;
 }
 
 .body-input {
